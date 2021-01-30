@@ -15,3 +15,18 @@ foreach($data as $k => $v)
 	echo implode("\t", $v);
 	echo "\n";
 }
+
+$spsh = \PhpOffice\PhpSpreadsheet\IOFactory::load('./designed_table.xlsx');
+$data = $spsh->getActiveSheet()->rangeToArray('A1:C50', null, true, true, true);
+
+foreach($data as $k => $v)
+{
+        if(!$v['A'])
+	{
+                echo "END on Row#$k\n";
+                break;
+        }
+
+        echo implode("\t", $v);
+        echo "\n";
+}
